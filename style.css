@@ -323,7 +323,7 @@ label:hover{
 }
 #mode-selector button{
     width: 25vw;
-    height: 20vh;
+    height: 30vh;
 }
 }
 
@@ -348,7 +348,7 @@ label:hover{
         font-size: 2em;
     }
     #vaxt{
-        font-size: 1.5em !important;
+        font-size: 1em !important;
         width: 14vw !important;
         height: 9vh !important;
         padding: 2vw;
