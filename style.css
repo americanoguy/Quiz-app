@@ -287,6 +287,42 @@ label:hover{
     border-radius: 15px;
 }
 
+.dilmodu{
+    width: 40vw;
+    padding: 1vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw;
+}
+
+#az {
+  width: 6vw;
+  height: 6vh;
+  background-image: url("img/Flag_of_Azerbaijan.svsmall.png");
+  background-repeat: no-repeat;
+  background-size: cover; 
+  background-position: center;
+  border: none; 
+  padding: 0; 
+  margin: 0; 
+  display: inline-block;
+  cursor: pointer;
+}
+
+#en{
+    width: 6vw;
+    height: 6vh;
+    background-image: url(img/usflag.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border: none;
+    padding: 0;
+    margin: 0;
+    display: inline-block;
+    cursor: pointer;
+}
 
 @media(max-width:1200px){
     .option{
