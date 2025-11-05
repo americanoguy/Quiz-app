@@ -573,11 +573,23 @@ suallarigonderbtn.onclick = function () {
         xal++;
       }
     }
+
+    // duz ve sehvleri rengleriyle gosteremek
+    for (let j = 0; j < secimler.length; j++) {
+      if (secimler[j].value === suallar[i].duzgun) {
+        secimler[j].parentElement.style.background = "limegreen";
+      } else if (secimler[j].checked && secimler[j].value !== suallar[i].duzgun) {
+        secimler[j].parentElement.style.background = "red";
+      } else {
+        secimler[j].parentElement.style.background = ""; 
+      }
+    }
   }
-  eng.style.display="none";
-  az.style.display="none";
-  moviemode.style.display="none"
-  historymode.style.display ="none"
+
+  eng.style.display = "none";
+  az.style.display = "none";
+  moviemode.style.display = "none";
+  historymode.style.display = "none";
   halloweenmode.style.display = "none";
   geographymode.style.display = "none";
   suallarolandiv.style.display = "none";
@@ -612,16 +624,59 @@ suallarigonderbtn.onclick = function () {
         result.innerHTML = `<h3 id="won">You got ${xal} / ${suallar.length} correct! <br> <span id="youwon">You won</span></h3>`;
         clap.play();
       }
-    }else if(mode==="Movie"){
-      if(xal<5){
-         result.innerHTML = `<h3 id="lost">You got ${xal} / ${suallar.length} correct! <br> <span id="youlost">You lost</span></h3>`;
+    } else if (mode === "Movie") {
+      if (xal < 5) {
+        result.innerHTML = `<h3 id="lost">You got ${xal} / ${suallar.length} correct! <br> <span id="youlost">You lost</span></h3>`;
         fail.play();
-      }else{
+      } else {
         result.innerHTML = `<h3 id="won">You got ${xal} / ${suallar.length} correct! <br> <span id="youwon">You won</span></h3>`;
         clap.play();
       }
     }
-  }, 2000);
+
+    let cavablarDiv = document.createElement("div");
+    cavablarDiv.id = "cavablar";
+    cavablarDiv.innerHTML = "<h2>Your Answers:</h2>";
+    cavablarDiv.style.marginTop = "40vh";
+    cavablarDiv.style.fontFamily = "Arial";
+
+    suallar.forEach((sual, i) => {
+      let sualBox = document.createElement("div");
+      sualBox.classList.add("sualBox");
+      sualBox.innerHTML = `<h4>${i + 1}. ${sual.sual}</h4>`;
+
+      // secilen cavabi tapmaq
+      let secilmis = "";
+      let secimler = document.getElementsByName(i);
+      for (let j = 0; j < secimler.length; j++) {
+        if (secimler[j].checked) {
+          secilmis = secimler[j].value;
+        }
+      }
+
+      sual.cavablar.forEach(cavab => {
+        let p = document.createElement("p");
+        p.textContent = cavab;
+
+        if (cavab === sual.duzgun) {
+          p.style.background = "limegreen";
+        } else if (cavab === secilmis && cavab !== sual.duzgun) {
+          p.style.background = "red";
+          p.style.color = "white";
+          p.style.opacity = "1";
+        } else {
+          p.style.background = "tomato";
+          p.style.opacity = "0.6";
+        }
+
+        sualBox.appendChild(p);
+      });
+
+      cavablarDiv.appendChild(sualBox);
+    });
+
+    result.appendChild(cavablarDiv);
+  });
 };
 
 // timer
@@ -646,3 +701,5 @@ function setMode(mode) {
   localStorage.setItem("quizMode", mode);
   location.reload();
 }
+
+
